@@ -17,6 +17,25 @@ function rehacer() {
   editor.history.redo();
 }
 
+// Función para exportar el contenido del editor como archivo .txt
+function exportarComoTxt() {
+  const contenido = editor.root.innerHTML; // Obtiene el contenido del editor
+  const textoPlano = contenido.replace(/<[^>]+>/g, ''); // Elimina las etiquetas HTML para convertirlo en texto plano
+  
+  const blob = new Blob([textoPlano], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+
+  const enlace = document.createElement('a');
+  enlace.href = url;
+  enlace.download = 'documento.txt'; // Nombre del archivo descargado
+  document.body.appendChild(enlace);
+  enlace.click();
+
+  // Limpia el enlace para evitar problemas de memoria
+  document.body.removeChild(enlace);
+  URL.revokeObjectURL(url);
+}
+
 // Recuperar el nombre del documento desde localStorage
 const documentName = localStorage.getItem("documentName");
 
