@@ -68,13 +68,6 @@ public class DocumentoController {
         return "documento";
     }
 
-    @PostMapping("/guardar")
-    public String guardarDocumento(Model model) {
-        documentoService.guardarDocumento();
-        model.addAttribute("documentosGuardados", documentoService.listarDocumentos());
-        return "documento";
-    }
-
     @GetMapping("/cambios")
     public String listarCambiosPendientes(Model model) {
         Queue<String> cambios = documentoService.listarCambiosPendientes();
@@ -90,12 +83,23 @@ public class DocumentoController {
                 .findFirst()
                 .orElse(null);
 
-        if (doc != null) {
+        if (doc == null) {
+            model.addAttribute("error", "El documento no fue encontrado.");
+        } else {
             documentoService.agregarDocumentoAVista(doc);
         }
+
         model.addAttribute("documentosEnVista", documentoService.listarDocumentosEnVista());
         return "documentosEnVista";
     }
+
+    @GetMapping("/guardados")
+    public String listarDocumentosGuardados(Model model) {
+        List<Documento> guardados = documentoService.listarDocumentosGuardados();
+        model.addAttribute("documentosGuardados", guardados);
+        return "documentosGuardados"; // Nueva vista para mostrar documentos guardados
+    }
+
 
     @PostMapping("/vista/cerrar")
     public String cerrarDocumentoEnVista(Model model) {

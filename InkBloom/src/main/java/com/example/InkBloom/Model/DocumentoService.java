@@ -93,7 +93,14 @@ public class DocumentoService {
 
     // Documentos en vista: agregar un documento
     public void agregarDocumentoAVista(Documento doc) {
-        documentosEnVista.add(doc);
+        if (doc != null) {
+            documentosEnVista.add(new Documento(doc)); // Agrega una copia del documento
+        }
+    }
+
+    // Obtener la lista de documentos guardados
+    public List<Documento> listarDocumentosGuardados() {
+        return new LinkedList<>(documentosGuardados); // Copia para evitar modificaciones externas
     }
 
     // Cerrar el documento más antiguo en vista
