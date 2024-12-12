@@ -68,6 +68,13 @@ public class DocumentoController {
         return "documento";
     }
 
+    @PostMapping("/guardar")
+    public String guardarDocumento(Model model) {
+        documentoService.guardarDocumento();
+        model.addAttribute("documentosGuardados", documentoService.listarDocumentos());
+        return "documento";
+    }
+
     @GetMapping("/cambios")
     public String listarCambiosPendientes(Model model) {
         Queue<String> cambios = documentoService.listarCambiosPendientes();
@@ -93,20 +100,19 @@ public class DocumentoController {
         return "documentosEnVista";
     }
 
-    @GetMapping("/guardados")
-    public String listarDocumentosGuardados(Model model) {
-        List<Documento> guardados = documentoService.listarDocumentosGuardados();
-        model.addAttribute("documentosGuardados", guardados);
-        return "documentosGuardados"; // Nueva vista para mostrar documentos guardados
-    }
-
-
     @PostMapping("/vista/cerrar")
     public String cerrarDocumentoEnVista(Model model) {
         Documento cerrado = documentoService.cerrarDocumentoEnVista();
         model.addAttribute("cerrado", cerrado);
         model.addAttribute("documentosEnVista", documentoService.listarDocumentosEnVista());
         return "documentosEnVista";
+    }
+
+    @GetMapping("/guardados")
+    public String listarDocumentosGuardados(Model model) {
+        List<Documento> guardados = documentoService.listarDocumentosGuardados();
+        model.addAttribute("documentosGuardados", guardados);
+        return "documentosGuardados"; // Nueva vista para mostrar documentos guardados
     }
 
     @GetMapping("/area-de-trabajo")
