@@ -28,15 +28,16 @@
 <br>
 
 <div class="container">
-    <h2>Documentos</h2>
+    <h2>Inkbloom </h2>
 
     <div class="card">
-        <h3>Documentos Actuales:</h3>
-        <ul>
-            <li th:each="doc : ${documentos}">
-                <a th:href="@{'/documento/crear?titulo=' + ${doc.titulo}}" th:text="${doc.titulo}"></a>
-            </li>
-        </ul>
+        <h3>¿Quienes Somos?</h3>
+       <p>InkBloom: Transformando la forma en que creamos y colaboramos en línea
+
+        En el dinámico mundo digital actual, la escritura no es solo una herramienta, es un puente hacia la creatividad, la colaboración y la comunicación efectiva. Es por ello que presentamos InkBloom, un editor de texto en línea diseñado para quienes buscan una experiencia de escritura intuitiva, poderosa y colaborativa.
+        
+        ¿Qué es InkBloom?
+        InkBloom es más que un simple editor de texto; es un espacio creativo en la web donde las ideas florecen. Con una interfaz elegante y fácil de usar, InkBloom combina las mejores características de un procesador de texto con herramientas innovadoras que facilitan la escritura, edición y trabajo en equipo en tiempo real.</p>
     </div>
 
     <!-- Modal -->
@@ -49,20 +50,6 @@
         </div>
     </div>
 
-    <h3>Documento Actual:</h3>
-    <div class="card">
-        <h4>Title</h4>
-        <p><span th:text="${documento.titulo}"></span></p>
-    </div>
-    <div class="card">
-        <h4>Fecha de Edición</h4>
-        <p><span th:text="${documento.fechaEdicion}"></span></p>
-    </div>
-    <div class="card">
-        <h4>Cuerpo</h4>
-        <p><span th:text="${documento.cuerpo}"></span></p>
-    </div>
-</div>
 
 <footer class="footer">
     <p>&copy; 2024 InkBloom. Todos los derechos reservados.</p>
