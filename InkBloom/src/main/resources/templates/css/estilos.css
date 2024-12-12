@@ -165,3 +165,19 @@ body.fondo-negro {
   }
   
 
+  .titulo {
+    font-family: 'Arial', sans-serif; 
+    font-size: 28px;
+    font-weight: bold; 
+    color: #fffefe; 
+    text-align: center; 
+    margin-top: 20px; /* Espacio superior */
+  }
+  
+  #documentTitle {
+    color: #ffffff; /* Color verde para resaltar el nombre del documento */
+    font-size: 30px; /* Tamaño de fuente más grande para el nombre */
+    font-weight: normal; /* Fuente no tan gruesa como el título */
+  
+  }
+  
