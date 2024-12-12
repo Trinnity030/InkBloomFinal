@@ -10,7 +10,7 @@
 </head>
 <body class="fondo-negro">
   <div class="contenedor">
-    <h2 class="titulo">Edición del documento: <span th:text="${documento.titulo}"></span></h2>
+    <h2 class="titulo">Edición del documento: <span id="documentTitle"></span></h2>
 
     <!-- Aquí se muestra el editor con el contenido del documento -->
     <div id="editor" th:data-documento="${documento.cuerpo}" class="editor"></div>

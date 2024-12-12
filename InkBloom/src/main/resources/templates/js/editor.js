@@ -7,25 +7,6 @@ const editor = new Quill('#editor', {
 const contenido = document.getElementById('editor').dataset.documento;
 editor.root.innerHTML = contenido;
 
-// Función para guardar los cambios
-async function guardarCambios() {
-  const contenido = editor.root.innerHTML;
-  const response = await fetch('/documento/agregar', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ texto: contenido }),
-  });
-  
-  if (response.ok) {
-      alert('Documento guardado!');
-      mostrarDocumentosRecientes(); // Actualiza la lista de documentos
-  } else {
-      alert('Hubo un error al guardar el documento');
-  }
-}
-
 // Función para deshacer cambios
 function deshacer() {
   editor.history.undo();
@@ -36,26 +17,15 @@ function rehacer() {
   editor.history.redo();
 }
 
-// Función para mostrar los documentos recientes
-async function mostrarDocumentosRecientes() {
-  const response = await fetch('/documentos');
-  const documentos = await response.json();
+// Recuperar el nombre del documento desde localStorage
+const documentName = localStorage.getItem("documentName");
 
-  const documentosList = document.querySelector('ul'); // Selecciona el <ul> donde se muestran los documentos
-  documentosList.innerHTML = ''; // Limpia la lista actual
+// Verificar que el nombre se recuperó correctamente
+console.log("Nombre recuperado de localStorage:", documentName);
 
-  documentos.forEach(doc => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = `/documento/crear?titulo=${doc.titulo}`;
-      a.textContent = doc.titulo;
-      li.appendChild(a);
-      documentosList.appendChild(li);
-  });
+// Asignar el nombre del documento al span en el h2
+if (documentName) {
+    document.getElementById("documentTitle").textContent = documentName;
+} else {
+    document.getElementById("documentTitle").textContent = "Documento no especificado";
 }
-
-// Llama a la función para cargar los documentos cuando se cargue la página
-document.addEventListener('DOMContentLoaded', mostrarDocumentosRecientes);
-
-// Agrega el evento de clic al botón para guardar los cambios
-document.getElementById('guardarCambiosBtn').addEventListener('click', guardarCambios);
