@@ -25,9 +25,12 @@ function exportarComoTxt() {
   const blob = new Blob([textoPlano], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
 
+  // Recupera el nombre del documento desde localStorage
+  const documentName = localStorage.getItem("documentName") || 'documento'; // Usa 'documento' como nombre predeterminado si no hay un nombre
+
   const enlace = document.createElement('a');
   enlace.href = url;
-  enlace.download = 'documento.txt'; // Nombre del archivo descargado
+  enlace.download = documentName + '.txt'; // Nombre del archivo con el nombre guardado en localStorage
   document.body.appendChild(enlace);
   enlace.click();
 
@@ -35,6 +38,7 @@ function exportarComoTxt() {
   document.body.removeChild(enlace);
   URL.revokeObjectURL(url);
 }
+
 
 // Recuperar el nombre del documento desde localStorage
 const documentName = localStorage.getItem("documentName");
