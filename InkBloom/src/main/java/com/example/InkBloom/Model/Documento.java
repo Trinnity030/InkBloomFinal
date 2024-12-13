@@ -7,20 +7,17 @@ import java.util.ArrayList;
 public class Documento {
     private String titulo;
     private ArrayList<String> cuerpo;
-    private LocalDateTime fechaEdicion; // Fecha de la última edición
 
     // Constructor que inicializa el documento con un título y fecha de edición
-    public Documento(String titulo, LocalDateTime fechaEdicion) {
+    public Documento(String titulo) {
         this.titulo = titulo;
         this.cuerpo = new ArrayList<>();
-        this.fechaEdicion = fechaEdicion; // Asignar la fecha de edición aquí
     }
 
     // Constructor copia
     public Documento(Documento doc) {
         this.titulo = doc.titulo;
         this.cuerpo = new ArrayList<>(doc.cuerpo);
-        this.fechaEdicion = doc.fechaEdicion; // Copiar también la fecha de edición
     }
 
     // Obtiene el título del documento
@@ -55,13 +52,5 @@ public class Documento {
     // Verifica si el cuerpo del documento está vacío
     public boolean isEmpty() {
         return cuerpo.isEmpty();
-    }
-
-    public LocalDateTime getFechaEdicion() {
-        return fechaEdicion;
-    }
-
-    public void setFechaEdicion(LocalDateTime fechaEdicion) {
-        this.fechaEdicion = fechaEdicion;
     }
 }
